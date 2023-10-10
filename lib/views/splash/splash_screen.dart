@@ -1,3 +1,4 @@
+import 'package:e_learning_app/components/navigator_helper.dart';
 import 'package:e_learning_app/repos/main/main_repo.dart';
 import 'package:e_learning_app/views/auth/login_screen.dart';
 import 'package:e_learning_app/views/main/main_screen.dart';
@@ -10,15 +11,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(
-      Duration(seconds: 3),
+      const Duration(seconds: 3),
       () {
-        Navigator.pushReplacement(
-          context,
-          PageTransition(
-            child: MainRepo.authRepo.goToLoginOrMain(),
-            type: PageTransitionType.leftToRightWithFade,
-          ),
-        );
+        NavigatorHelper.toAndOff(MainRepo.authRepo.goToLoginOrMain(), context);
       },
     );
 
