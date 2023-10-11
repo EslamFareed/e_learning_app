@@ -1,3 +1,4 @@
+import 'package:e_learning_app/components/sizes_screen.dart';
 import 'package:e_learning_app/repos/db/shared_pref/shared_helper.dart';
 import 'package:e_learning_app/repos/main/main_repo.dart';
 import 'package:e_learning_app/root/app_root.dart';

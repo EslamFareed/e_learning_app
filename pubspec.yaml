@@ -10,6 +10,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.2
+  carousel_slider: ^4.2.1
   cloud_firestore: ^4.9.3
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.10.1
@@ -21,7 +22,6 @@ dependencies:
   shared_preferences: ^2.2.1
 
 dev_dependencies:
-
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -31,10 +31,10 @@ flutter:
 
   assets:
     - assets/images/
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Rubik
+      fonts:
+        - asset: assets/fonts/rubik.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
