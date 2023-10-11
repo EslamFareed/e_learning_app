@@ -2,8 +2,11 @@ import 'package:e_learning_app/controllers/auth/auth_cubit.dart';
 import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
-  LoginButton({super.key, required this.onPressed});
+  LoginButton({super.key, required this.onPressed, required this.label});
   void Function() onPressed;
+
+  String label;
+
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
@@ -14,9 +17,9 @@ class LoginButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const Text(
-        "Login",
-        style: TextStyle(color: Colors.white),
+      child: Text(
+        label,
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }

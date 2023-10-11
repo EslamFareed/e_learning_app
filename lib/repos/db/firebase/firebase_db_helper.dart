@@ -5,12 +5,18 @@ class FirebaseDBHelper {
 
   Future<DocumentReference<Map<String, dynamic>>?> addToCol(
       String collName, Map<String, dynamic> data) async {
-    await db.collection(collName).add(data).then((value) {
-      return value;
+    DocumentReference<Map<String, dynamic>>? value;
+    await db.collection(collName).add(data).then((_value) {
+      value = _value;
     }).catchError((error) {
       print(error);
     });
-    return null;
+    return value;
+  }
+
+  Future<void> addToColWithId(
+      String collName, Map<String, dynamic> data, String id) async {
+    return await db.collection(collName).doc(id).set(data);
   }
 
   Future<List<Map<String, dynamic>>> getList(String collName) async {

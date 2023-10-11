@@ -1,5 +1,8 @@
+import 'package:e_learning_app/models/user_model.dart';
+import 'package:e_learning_app/repos/db/firebase/collections_name.dart';
 import 'package:e_learning_app/repos/db/shared_pref/shared_helper.dart';
 import 'package:e_learning_app/repos/db/shared_pref/shared_keys.dart';
+import 'package:e_learning_app/repos/main/main_repo.dart';
 import 'package:e_learning_app/views/auth/login_screen.dart';
 import 'package:e_learning_app/views/main/main_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +13,12 @@ class AuthRepo {
 
   String errorMessage = '';
 
-  Future<void> saveLoginOffline() async {
+  Future<void> _saveLoginOffline() async {
     await SharedHelper.setData(SharedKeys.isLogin.name, true);
+  }
+
+  Future<void> _saveIdOffline(String id) async {
+    await SharedHelper.setData(SharedKeys.userId.name, id);
   }
 
   Future<User?> login(String email, String pass) async {
@@ -21,7 +28,7 @@ class AuthRepo {
           .signInWithEmailAndPassword(email: email, password: pass)
           .then((value) async {
         if (value.user != null) {
-          await saveLoginOffline();
+          await _saveLoginOffline();
           user = value.user;
         }
       });
@@ -41,6 +48,32 @@ class AuthRepo {
     //   print(error.message);
     //   print("-------------------------------");
     // });
+  }
+
+  Future<User?> register(UserModel u) async {
+    User? user;
+    try {
+      await auth
+          .createUserWithEmailAndPassword(
+              email: u.email!, password: u.password!)
+          .then((value) async {
+        if (value.user != null) {
+          user = value.user;
+          u.id = user!.uid;
+          await saveDataAccount(u);
+          await _saveIdOffline(u.id!);
+        }
+      });
+    } on FirebaseAuthException catch (e) {
+      errorMessage = e.message!;
+    }
+
+    return user;
+  }
+
+  Future<void> saveDataAccount(UserModel user) async {
+    await MainRepo.dbHelper
+        .addToColWithId(CollectionsName.Users.name, user.toJson(), user.id!);
   }
 
   bool? _getData() {

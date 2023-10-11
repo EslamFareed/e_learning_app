@@ -4,6 +4,7 @@ import 'package:e_learning_app/controllers/auth/auth_cubit.dart';
 import 'package:e_learning_app/repos/main/main_repo.dart';
 import 'package:e_learning_app/views/auth/components/default_text_field.dart';
 import 'package:e_learning_app/views/auth/components/login_button.dart';
+import 'package:e_learning_app/views/auth/register_screen.dart';
 import 'package:e_learning_app/views/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,6 +43,7 @@ class LoginScreen extends StatelessWidget {
                   return state is LoadingLoginState
                       ? const Center(child: CircularProgressIndicator())
                       : LoginButton(
+                          label: "Login",
                           onPressed: () {
                             AuthCubit.get(context).login(
                               emailController.text,
@@ -52,7 +54,9 @@ class LoginScreen extends StatelessWidget {
                 },
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  NavigatorHelper.to(RegisterScreen(), context);
+                },
                 child: const Text("Sign up"),
               )
             ],
