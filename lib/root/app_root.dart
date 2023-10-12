@@ -1,5 +1,6 @@
 import 'package:e_learning_app/components/sizes_screen.dart';
 import 'package:e_learning_app/controllers/auth/auth_cubit.dart';
+import 'package:e_learning_app/controllers/courses/courses_cubit.dart';
 import 'package:e_learning_app/controllers/main/main_cubit.dart';
 import 'package:e_learning_app/repos/main/main_repo.dart';
 import 'package:e_learning_app/views/splash/splash_screen.dart';
@@ -16,6 +17,7 @@ class AppRoot extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => MainCubit()),
+        BlocProvider(create: (context) => CoursesCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
