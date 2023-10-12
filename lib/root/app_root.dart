@@ -22,7 +22,7 @@ class AppRoot extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
-        theme: ThemeData.light(useMaterial3: true),
+        theme: ThemeData.light(useMaterial3: true).copyWith(),
       ),
     );
   }

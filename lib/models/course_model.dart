@@ -6,6 +6,7 @@ class CourseModel {
   String? name;
   String? description;
   String? category;
+  double? rating;
 
   CourseModel(
       {this.image,
@@ -14,7 +15,8 @@ class CourseModel {
       this.price,
       this.name,
       this.description,
-      this.category});
+      this.category,
+      this.rating});
 
   CourseModel.fromJson(Map<String, dynamic> json) {
     image = json['image'];
@@ -24,6 +26,7 @@ class CourseModel {
     name = json['name'];
     description = json['description'];
     category = json['category'];
+    rating = json['rating'];
   }
 
   Map<String, dynamic> toJson() {
@@ -35,6 +38,7 @@ class CourseModel {
     data['name'] = this.name;
     data['description'] = this.description;
     data['category'] = this.category;
+    data['rating'] = this.rating;
     return data;
   }
 }

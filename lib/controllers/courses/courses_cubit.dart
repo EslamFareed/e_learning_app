@@ -36,4 +36,12 @@ class CoursesCubit extends Cubit<CoursesState> {
       emit(ErrorCoursesState());
     }
   }
+
+  List<CourseModel> searchCourses = [];
+  void search(String text) {
+    searchCourses = [];
+    searchCourses =
+        courses.where((element) => element.category == text).toList();
+    emit(SearchCoursesState());
+  }
 }

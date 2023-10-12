@@ -1,6 +1,7 @@
 import 'package:e_learning_app/components/sizes_screen.dart';
 import 'package:e_learning_app/models/course_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ListViewCourses extends StatelessWidget {
   ListViewCourses({super.key, required this.courses});
@@ -71,9 +72,30 @@ class ListViewCourses extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      courses[index].description!,
-                      style: const TextStyle(color: Colors.green),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          courses[index].description!,
+                          style: const TextStyle(color: Colors.green),
+                        ),
+                        RatingBar.builder(
+                          initialRating: courses[index].rating!,
+                          minRating: 1,
+                          maxRating: 5,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemSize: 25,
+                          itemCount: 5,
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        )
+                      ],
                     ),
                     Text(
                       courses[index].name!,

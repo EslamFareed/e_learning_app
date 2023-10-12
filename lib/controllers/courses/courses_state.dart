@@ -10,3 +10,5 @@ class LoadingCoursesState extends CoursesState {}
 class SuccessCoursesState extends CoursesState {}
 
 class ErrorCoursesState extends CoursesState {}
+
+class SearchCoursesState extends CoursesState {}
